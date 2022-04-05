@@ -29,6 +29,16 @@ function setEmployeeBirthYear(_employee) {
     _employee.birthyear = today - _employee.employee_age;
 }
 
+function deleteEmployee(event) {
+    console.log(event);
+
+    console.log(event.target);
+
+    console.log(event.target.dataset);
+    // var i = index.parentNode.parentNode.rowIndex;
+    // document.getElementById('table').deleteRow(i);
+}
+
 
 function addEmployeeToTable(_employee) {
 
@@ -39,6 +49,7 @@ function addEmployeeToTable(_employee) {
     const tdEmail = document.createElement('td');
     const tdSalary = document.createElement('td');
     const tdBirthYear = document.createElement('td');
+    const tdActions = document.createElement('td');
 
     tdId.textContent = _employee.id;
     tdFullName.textContent = _employee.employee_name;
@@ -46,14 +57,25 @@ function addEmployeeToTable(_employee) {
     tdSalary.textContent = _employee.MonthlySalary;
     tdBirthYear.textContent = _employee.birthyear;
 
+    let buttons = '<button data-duplicate="' + _employee.id + '" class="duplicate"><i class="fa fa-files-o"></i> Duplicate</button> ';
+
+    buttons += '<button data-damien="dwwm" data-delete="' + _employee.id + '" class="delete"><i class="fa fa-trash"></i> Delete</button>';
+
+    tdActions.innerHTML = buttons;
+
     tableRow.appendChild(tdId)
     tableRow.appendChild(tdFullName)
     tableRow.appendChild(tdEmail)
     tableRow.appendChild(tdSalary)
     tableRow.appendChild(tdBirthYear);
+    tableRow.appendChild(tdActions);
+
+
 
     tbody.appendChild(tableRow);
 }
+
+
 
 fetch('employees.json', { method: "GET" })
     .then(response => {
@@ -69,9 +91,16 @@ fetch('employees.json', { method: "GET" })
             setEmployeeEmail(employees[i]);
             setEmployeeSalary(employees[i]);
             setEmployeeBirthYear(employees[i]);
-
             addEmployeeToTable(employees[i]);
 
-            console.log(employees[i]);
+            let btn1 = document.querySelectorAll('[data-delete]');
+
+            btn1.forEach(btn => {
+                btn.addEventListener('click', deleteEmployee)
+            });
+
+            console.log(btn1);
+
+            // console.log(employees[i]);
         }
     });
