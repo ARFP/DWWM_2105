@@ -11,13 +11,27 @@
 </head>
 <body>
     <nav>
-        <li><a id="theme" href="#">Menu</a></li>
+        <ul class="menu">
+            <li><a href="#">Menu 1</a></li>
+            <li><a href="#">Menu 2</a></li>
+            <li><a href="#">Menu 3</a></li>
+        </ul>
     </nav>
     <div id="toto">
         <span>{{ message }}</span>
         <p>
             Vous êtes sur cette page depuis: {{ nombre }} secondes.
         </p>
+        <p>
+            <input type="text" v-model="prenom"> {{ prenom }} 
+        </p>
+        <p>
+            <button v-on:click="reinitialiser">Click Me !</button>
+        </p>
+
+        <ul class="films">
+            <li v-for="movie in movies">{{ movie.movie_title }}</li>
+        </ul>
     </div>
 </body>
 </html>
