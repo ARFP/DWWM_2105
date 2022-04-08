@@ -1,0 +1,38 @@
+:root {
+    --bg: white;
+    --txt: black;
+}
+
+
+html {
+    font-size: 62.5%; /* 16px * 62.5% = 10px */
+}
+
+body  {
+    font-size: 1.6rem;
+    background-color: var(--bg);
+    color: var(--txt);
+}
+
+body.dark {
+    background: var(--txt);
+    color: var(--bg);
+}
+
+
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background: var(--txt);
+        color: var(--bg);
+    }
+
+    body.dark  {
+        background-color: var(--bg);
+        color: var(--txt);
+    }
+}
+
+@media print {
+    
+}

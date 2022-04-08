@@ -59,7 +59,7 @@ function addEmployeeToTable(_employee) {
 
     let buttons = '<button data-duplicate="' + _employee.id + '" class="duplicate"><i class="fa fa-files-o"></i> Duplicate</button> ';
 
-    buttons += '<button data-damien="dwwm" data-delete="' + _employee.id + '" class="delete"><i class="fa fa-trash"></i> Delete</button>';
+    buttons += '<button data-delete="' + _employee.id + '" class="delete"><i class="fa fa-trash"></i> Delete</button>';
 
     tdActions.innerHTML = buttons;
 
