@@ -42,3 +42,7 @@ nav a:hover {
     margin: 0;
 }
 
+
+img.photo {
+    height: 64px;
+}

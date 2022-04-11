@@ -29,9 +29,23 @@
             <button v-on:click="reinitialiser">Click Me !</button>
         </p>
 
-        <ul class="films">
-            <li v-for="movie in movies">{{ movie.movie_title }}</li>
-        </ul>
+        <table class="empTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom du film</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="movie in movies">
+                    <td>{{ movie.movie_id }}</td>
+                    <td>{{ movie.movie_title }}</td>
+                    <td><button :data-id="movie.movie_id" v-on:click="supprimerFilm">X</button></td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 </body>
 </html>
