@@ -131,3 +131,8 @@ img.photo {
     border-bottom: 1px solid palevioletred;
     text-align: center;
 }
+
+.done {
+    display:none;
+    visibility: hidden;
+}

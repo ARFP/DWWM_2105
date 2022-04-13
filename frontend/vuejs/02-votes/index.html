@@ -49,11 +49,11 @@
                         <div class="front">
                             <img :src="getPhotoUrl(applicant.id)" class="photo" alt="Photo du candidat">
                         </div>
-                        <div class="back">
+                        <div class="back" :class="{ 'done': listVotes.includes(applicant.id) }">
                             <h2>{{ applicant.lastname }} {{ applicant.firstname }}</h2>
                             <div>
-                                <button v-on:click="voteYes" :data-id="applicant.id">Oui</button>
-                                <button>Non</button>
+                                <button id="yes" v-on:click="vote" :data-id="applicant.id">Oui</button>
+                                <button id="no" v-on:click="vote" :data-id="applicant.id">Non</button>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,8 @@ const appVote = {
     data() {
         return {
            db: new Db(),
-           activeTab : 'list' // ou vote ou results
+           activeTab : 'list', // ou vote ou results
+           listVotes : []
         }
     },
 
@@ -27,18 +28,23 @@ const appVote = {
             this.activeTab = event.target.dataset.tab;
         },
 
-        voteYes(event) {
+        vote(event){
             let id = event.target.dataset.id;
-
             let applicant = this.db.applicants.find(item => item.id == id);
 
-            applicant.votes++;
-        },
-
-        voteNo(event) {
-            let id = event.target.dataset.id;
-            
+            if(event.target.id == "yes" ){
+                applicant.votes++;
+            }else {
+                if(applicant.votes > 0){
+                    applicant.votes--;
+                }
+                
+            }
+            console.log(applicant);
+            this.listVotes.push(id);
         }
+
+       
     }
 
 } // fin de app
