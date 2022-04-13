@@ -29,6 +29,15 @@ const appVote = {
 
         voteYes(event) {
             let id = event.target.dataset.id;
+
+            let applicant = this.db.applicants.find(item => item.id == id);
+
+            applicant.votes++;
+        },
+
+        voteNo(event) {
+            let id = event.target.dataset.id;
+            
         }
     }
 

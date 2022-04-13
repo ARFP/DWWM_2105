@@ -15,8 +15,6 @@ class Db
         let response = await fetch('./candidats/candidats.json');
         this.applicants = await response.json();
 
-        console.log(this.applicants);
-        
         for(let i = this.applicants.length-1; i >= 0; i--) {
             this.applicants[i].votes = 0;
         }
