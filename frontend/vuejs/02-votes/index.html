@@ -52,7 +52,7 @@
                         <div class="back">
                             <h2>{{ applicant.lastname }} {{ applicant.firstname }}</h2>
                             <div>
-                                <button>Oui</button>
+                                <button v-on:click="voteYes" :data-id="applicant.id">Oui</button>
                                 <button>Non</button>
                             </div>
                         </div>

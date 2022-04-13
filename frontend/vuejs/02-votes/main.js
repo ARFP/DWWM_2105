@@ -25,6 +25,10 @@ const appVote = {
         changeTab(event) {
             console.log(event.target.dataset);
             this.activeTab = event.target.dataset.tab;
+        },
+
+        voteYes(event) {
+            let id = event.target.dataset.id;
         }
     }
 

@@ -89,7 +89,7 @@ img.photo {
 
 .back {
     transform: rotateY(180deg);
-    background-color: lightskyblue;
+    background-color: darksalmon;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -119,5 +119,15 @@ img.photo {
 }
 
 .card button:hover {
-    
+    background-color: black;
+    color: pink;
+}
+
+.card h2 {
+    margin: 0;
+    padding: .4rem;
+    background-color: black;
+    color: palevioletred;
+    border-bottom: 1px solid palevioletred;
+    text-align: center;
 }
