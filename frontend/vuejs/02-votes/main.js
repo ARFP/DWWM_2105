@@ -41,7 +41,7 @@ const appVote = {
                 
             }
             console.log(applicant);
-            this.listVotes.push(id);
+            this.listVotes.push(parseInt(id));
         }
 
        
