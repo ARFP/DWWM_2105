@@ -17,7 +17,7 @@
             <li><a href="#" v-on:click="changeTab" data-tab="results">Résultats</a></li>
         </ul>
     </nav>
-    <div>
+    <main>
 
         <section v-if="activeTab == 'list'">
             <table>
@@ -40,9 +40,27 @@
             </table>
         </section>
 
-
         <section v-if="activeTab == 'vote'">
-            Section 2
+            
+            <div class="flex">
+
+                <article class="card" v-for="applicant in db.applicants">
+                    <div class="inner">
+                        <div class="front">
+                            <img :src="getPhotoUrl(applicant.id)" class="photo" alt="Photo du candidat">
+                        </div>
+                        <div class="back">
+                            <h2>{{ applicant.lastname }} {{ applicant.firstname }}</h2>
+                            <div>
+                                <button>Oui</button>
+                                <button>Non</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+
+            </div>
 
         </section>
 
@@ -51,6 +69,6 @@
             Section 3
         
         </section>
-    </div>
+    </main>
 </body>
 </html>
