@@ -40,8 +40,14 @@ const appVote = {
                 }
                 
             }
+
             console.log(applicant);
             this.listVotes.push(parseInt(id));
+            console.log(this.listVotes);
+
+            if(this.listVotes.length === this.db.applicants.length) {
+                this.activeTab = 'results';
+            }
         }
 
        
