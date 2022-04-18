@@ -16,13 +16,19 @@ class Db
         this.applicants = await response.json();
 
         for(let i = this.applicants.length-1; i >= 0; i--) {
-            this.applicants[i].votes = 0;
+            this.applicants[i].votes = this.getRandomVotes(10, 60);
         }
 
         console.log(this.applicants);
 
         return this.applicants;
     }
+
+    getRandomVotes(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+      }
 
 }
 

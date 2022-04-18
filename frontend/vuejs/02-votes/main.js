@@ -15,7 +15,9 @@ const appVote = {
     },
 
     computed: {
-
+        candidates() {
+            return this.db.applicants.sort((a, b) => 0.5 - Math.random());
+        }
     },
 
     methods: {
@@ -24,7 +26,6 @@ const appVote = {
         },
 
         changeTab(event) {
-            console.log(event.target.dataset);
             this.activeTab = event.target.dataset.tab;
         },
 
@@ -32,17 +33,14 @@ const appVote = {
             let id = event.target.dataset.id;
             let applicant = this.db.applicants.find(item => item.id == id);
 
-            if(event.target.id == "yes" ){
+            if(event.target.dataset.vote == "yes" ){
                 applicant.votes++;
-            }else {
-                if(applicant.votes > 0){
-                    applicant.votes--;
-                }
-                
             }
 
             console.log(applicant);
+
             this.listVotes.push(parseInt(id));
+
             console.log(this.listVotes);
 
             if(this.listVotes.length === this.db.applicants.length) {

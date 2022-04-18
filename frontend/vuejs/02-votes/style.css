@@ -1,34 +1,44 @@
 :root {
     --bg: white;
     --txt: black;
+    --main: #EEEEEE;
+    --hover: #FFFFFF33;
+    --title: lightgreen;
+    --title-bg: #00000077;
+    --btn-bg : darkgreen;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 
 html {
-    font-size: 62.5%; /* 16px * 62.5% = 10px */
+    font-size: 62.5%; /* 16px * 62.5% = 10px | 1rem = 10px */
 }
 
 body  {
-    font-size: 1.6rem;
+    font-size: 1.6rem; /* 1.6 * 10px = 16px */
     background-color: var(--bg);
     color: var(--txt);
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 nav {
-    background: black;
-    color: white;
+    background: var(--txt);
+    color: var(--bg);
 }
 
 nav a {
-    color: white;
+    color: var(--bg);
     text-decoration: none;
     display:block;
     padding: 1rem;
 }
 
 nav a:hover {
-    background: #FFFFFF33;
+    background: var(--hover);
 }
 
 .menu {
@@ -43,36 +53,41 @@ nav a:hover {
 }
 
 main {
-    background: #DDDDDD;
+    background: var(--main);
     width: 1200px;
     max-width: 100%;
     margin: auto;
 }
 
-img.photo {
-    height: 64px;
+h1, h2 {
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
 }
 
-/* FLEXBOX */ 
+
+/* FLEXBOX */
 .flex {
     display: flex;
-    /*flex-direction: row;
-    flex-wrap: wrap;*/
     flex-flow: row wrap;
     gap: 1rem; 
     padding: 1rem;
     justify-content: space-evenly;
 }
 
+
+/* CARDS */
+
 .card {
-    background: pink;
+    background: var(--bg);
     height: 200px;
     width: 200px;
-    border: 1px solid blue;
+    border: 1px solid var(--title);
     perspective: 1000px;
 }
 
-.inner {
+/* conteneur des 2 faces de la cartes. C'est cet élément qui sera retourné au survol de la souris */
+.card .inner {
     position:relative;
     height: 100%;
     width: 100%;
@@ -80,6 +95,12 @@ img.photo {
     transform-style: preserve-3d;
 }
 
+/* affichage de la face arrière au survol de la souris */
+.card:hover .inner {
+    transform: rotateY(180deg);
+}
+
+/* styles pour les faces avant et arrière */
 .front, .back {
     position: absolute;
     height: 100%;
@@ -87,52 +108,75 @@ img.photo {
     backface-visibility: hidden;
 }
 
+/* styles pour la face arrière + on retourne la face arrière par défaut */
 .back {
     transform: rotateY(180deg);
-    background-color: darksalmon;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background-color: var(--title-bg);
 }
 
+/* photos des candidats sur les 2 faces */
 .card img {
     width: 100%;
     height: 100%;
 }
 
-.card:hover .inner {
+.back img {
     transform: rotateY(180deg);
 }
 
-.card button {
+/* nom du candidat sur la face arrière */
+.card h2 {
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    margin: 0;
+    padding: .4rem;
+    text-align: center;
+    background: var(--title-bg);
+    color: var(--title);
+    border-bottom: 1px solid var(--title);
+}
+
+/* TABLEAU DE VOTE */
+
+.votes img.photo {
+    height: 60px;
+}
+
+
+/* BOUTONS */
+
+/* styles des boutons par défaut */
+button {
     padding: 1rem;
-    margin: 1%;
-    width: 48%;
     border: 1px solid black;
-    background:darkgreen;
-    color: white;
+    background:var(--btn-bg);
+    color: var(--bg);
     cursor: pointer;
 }
 
-.card button:last-child {
-    background-color: darkred;
+button:hover {
+    background: var(--txt);
+    color: var(--title);
 }
 
-.card button:hover {
-    background-color: black;
-    color: pink;
+/* bouton de vote sur la page principale */
+.btn-vote {
+    display: block;
+    width: 100%;
+    padding: 2rem 1rem;
+    margin: 1rem 0 0 0;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.card h2 {
-    margin: 0;
-    padding: .4rem;
-    background-color: black;
-    color: palevioletred;
-    border-bottom: 1px solid palevioletred;
-    text-align: center;
-}
-
+/* les boutons de vote des candidats pour lesquels on a déjà voté sont masqués. */
 .done {
     display:none;
     visibility: hidden;
 }
+
+
+/* RESULTATS */
