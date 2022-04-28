@@ -14,6 +14,7 @@ const appVote = {
     async mounted() {
         this.db.fetch();
         this.totalVotes = localStorage.getItem('totalVotes')
+
     },
 
     computed: {
@@ -57,11 +58,18 @@ const appVote = {
 
             if(this.listVotes.length === this.db.applicants.length) {
                 this.activeTab = 'results';
+                this.reloadWindow()
             }
 
             this.totalVotes++;
 
             localStorage.setItem('totalVotes', this.totalVotes)
+        },
+
+        reloadWindow() {
+            setTimeout(() => {
+                window.location.reload()
+            }, 5000)
         }
 
        
