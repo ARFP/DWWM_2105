@@ -84,6 +84,11 @@
         <section v-if="activeTab == 'results'">
             <h2>Merci d'avoir voté !</h2>
             <p>Les résultats s'afficheront ici...</p>
+            
+            <div v-for="candidate in candidatesSorted">
+                {{ candidate.lastname }} {{ candidate.votes }} 
+                <progress :value="candidate.votes" :max="totalVotes"></progress>
+            </div>
         </section>
 
     </main>

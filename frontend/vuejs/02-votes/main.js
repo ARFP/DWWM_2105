@@ -6,18 +6,29 @@ const appVote = {
         return {
            db: new Db(),
            activeTab : 'list', // ou vote ou results
-           listVotes : []
+           listVotes : [],
+           totalVotes: 0
         }
     },
 
     async mounted() {
         this.db.fetch();
+        this.totalVotes = localStorage.getItem('totalVotes')
     },
 
     computed: {
         candidates() {
             return this.db.applicants.sort((a, b) => 0.5 - Math.random());
+        },
+        candidatesSorted() {
+            return this.db.applicants.sort((a, b) => b.votes - a.votes)
+        },
+        totalVoters() {
+            return this.totalVotes / this.db.applicants.length;
         }
+        /*totalVotesYes() {
+            return this.db.applicants.reduce((acc, applicant) => acc + applicant.votes, 0)
+        }*/
     },
 
     methods: {
@@ -35,6 +46,7 @@ const appVote = {
 
             if(event.target.dataset.vote == "yes" ){
                 applicant.votes++;
+                localStorage.setItem(id, applicant.votes)
             }
 
             console.log(applicant);
@@ -46,6 +58,10 @@ const appVote = {
             if(this.listVotes.length === this.db.applicants.length) {
                 this.activeTab = 'results';
             }
+
+            this.totalVotes++;
+
+            localStorage.setItem('totalVotes', this.totalVotes)
         }
 
        
